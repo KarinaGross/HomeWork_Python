@@ -3,32 +3,17 @@
 # *Пример:*
 # - 0,56 -> 11
 
-# n = abs(float(input()))     # нерабочий код, выдает неправильный ответ на числа, состоящие из 0 и 1
-# print(n)
-# n = int(n * 10**(len(str(n)) - 2))
-# print(n)
-# sum = 0
-# while n > 0:
-#     sum += n % 10
-#     n //= 10
+n = input("Введите вещественное число: ")
 
-# print(sum)
-
-
-n = input().split('.')
+list = list(n)
 sum = 0
-for i in range(len(n)):
+for i in range(len(list)):
+    if list[i].isdigit():
+        sum += int(list[i])
 
-    n[i] = abs(int(n[i]))
-
-for i in range(len(n)):
-    while n[i] > 0:
-        sum += n[i] % 10
-        n[i] //= 10
+print(f"Сумма цифр этого числа равна {sum}")
 
 
-print(n)
-print(sum)
     
 
 
