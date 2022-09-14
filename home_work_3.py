@@ -41,15 +41,10 @@
 #         res.append(new_list[size // 2] ** 2)
 #     return res
 
-# def string_to_int(new_list: list) -> list:
-#     for i in range(len(new_list)):
-#         new_list[i] = int(new_list[i])
-#     return new_list
 
 
-# my_list = input('Введите числа через пробел: ').split()
+# my_list = [int(el) for el in input('Введите числа через пробел: ').split()]
 
-# string_to_int(my_list)
 # print(product_of_num(my_list))
 
 
