@@ -39,16 +39,17 @@
 
 # def simple_factors(N: int) -> list:
 #     result = []
-#     while N > 0:
-#         for i in simpl_numbers(N):
-#             if N % i == 0:
+#     for i in simpl_numbers(N):
+#             while N % i == 0:
 #                 result.append(i)
-#                 N /= i
-        
+#                 N //= i
 #     return result
 
+# number = int(input('Введите число: '))
+# print(f'Список простых множителей числа {number}: {simple_factors(number)}')
 
-# print(simpl_numbers(20))
+
+
 
 
 
@@ -58,10 +59,60 @@
 # неповторяющихся элементов исходной последовательности.
 # [1, 1, 2, 3, 4, 5, 5] -> [2, 3, 4]
 
+# def unique_elem(new_list: list) -> list:
+#     result = []
+#     count = 0
+#     for el in new_list:
+#         if new_list.count(el) == 1:
+#             result.append(el)
+            
+#     return result
+
+
+# user_list = [int(el) for el in input('Введите числа через пробел: ').split()]
+
+# print(unique_elem(user_list))
+
+
+
+
+
+
 # Задана натуральная степень k. Сформировать случайным образом список коэффициентов
 # (значения от 0 до 100) многочлена и записать в файл многочлен степени k.
 # Пример:
 
 # k=2 => 2*x² + 4*x + 5 = 0 или x² + 5 = 0 или 10*x² = 0
+
+from random import randint
+import itertools
+
+def coeff_polinom(k: int):
+    coeff = [randint(0, 10) for _ in range(k + 1)]
+    if coeff[0] == 0:
+        coeff[0] = randint(1, 10)
+    return coeff
+
+def polinominal(k: int):
+    polinom = []
+    result = []
+    coeff = coeff_polinom(k)
+    for i in range(k, -1, -1):
+        polinom.append(f'x^{i}')
+    for i in range(polinom):
+        result.append(f'{coeff[i]}*{polinom[i]}')
+    return result
+
+print(polinominal(2))
+
+    
+
+
+
+
+
 # Даны два файла, в каждом из которых находится запись многочлена.
 # Задача - сформировать файл, содержащий сумму многочленов.
+
+
+
