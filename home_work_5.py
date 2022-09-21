@@ -17,6 +17,15 @@
 
 
 
+
+
+
+
+
+
+
+
+
 # 2. Создайте программу для игры с конфетами человек против человека.
 
 # Условие задачи: На столе лежит 2021 конфета. Играют два игрока делая ход друг после друга. 
@@ -28,64 +37,155 @@
 
 # b) Подумайте как наделить бота ""интеллектом""
 
-from msilib import sequence
-import random
+# from msilib import sequence
+# import random
 
-def who_is_1(name1: str, name2: str):
-    if random.randint(0,1):
-        player1 = name1
-        player2 = name2
-    else:
-        player1 = name2
-        player2 = name1
-    return player1, player2
+# def who_is_1(name1: str, name2: str):
+#     if random.randint(0,1):
+#         player1 = name1
+#         player2 = name2
+#     else:
+#         player1 = name2
+#         player2 = name1
+#     return player1, player2
 
-def victory(players: tuple, first_move: int, k=2021, step=28):
-    whose_move = players[0]
+# def victory(players: tuple, first_move: int, k=2021, step=28):
+#     whose_move = players[0]
 
-    k -= first_move
-    while k > 0:
-        k -= random.randint(1, step)
-        if whose_move == players[0]:
-            whose_move = players[1]
-        else:
-            whose_move = players[0]
+#     k -= first_move
+#     while k > 0:
+#         k -= random.randint(1, step)
+#         if whose_move == players[0]:
+#             whose_move = players[1]
+#         else:
+#             whose_move = players[0]
 
-    return f'Побеждает {whose_move}!'
-
-
-
-def hint_for_player1(k=2021, step=28):
-    for i in range(1, step+1):
-        if not (k - i) % (step + 1):
-            return i
+#     return f'Побеждает {whose_move}!'
 
 
-print('Введите свои имена: ')
-name1, name2 = input(), input()
-order_move = who_is_1(name1, name2)
-starter = order_move[0]
-second = order_move[1]
 
-print()
-
-print(f'{starter} - ты начинаешь игру')
-print(f'Подсказка: {starter}, чтобы победить, возьми на первом ходу {hint_for_player1()} конфет')
+# def hint_for_player1(k=2021, step=28):
+#     for i in range(1, step+1):
+#         if not (k - i) % (step + 1):
+#             return i
 
 
-step_player1 = int(input('Твой ход: '))
+# print('Введите свои имена: ')
+# name1, name2 = input(), input()
+# order_move = who_is_1(name1, name2)
+# starter = order_move[0]
+# second = order_move[1]
 
-print()
+# print()
 
-print(victory(order_move, step_player1))
+# print(f'{starter} - ты начинаешь игру')
+# print(f'Подсказка: {starter}, чтобы победить, возьми на первом ходу {hint_for_player1()} конфет')
 
 
+# step_player1 = int(input('Твой ход: '))
+
+# print()
+
+# print(victory(order_move, step_player1))
 
 
 
 
 
-# Создайте программу для игры в ""Крестики-нолики"".
+
+
+
+
+
+
+
+
+
+# 3. Создайте программу для игры в ""Крестики-нолики"".
+
+from tkinter import *
+
+window = Tk()
+
+# frame = Frame(master=window, width=150, height=150)
+# frame.pack(fill=BOTH)
+
+# button1 = Button(master=frame, text='1')
+# button1.pack()
+
+# button2 = Button(master=frame, text='2')
+# button2.pack()
+
+# button3 = Button(master=frame, text='3')
+# button3.pack()
+
+# button4 = Button(master=frame, text='4')
+# button4.pack()
+def handle_click(event):
+    print('X')
+
+for i in range(3):
+    window.columnconfigure(i, weight=1, minsize=50)
+    window.rowconfigure(i, weight=1, minsize=50)
+    for j in range(3):
+        frame = Frame(
+            master=window,
+            relief=RAISED,
+            borderwidth=1
+        )
+        frame.grid(row=i, column=j)
+        button = Button(
+            master=frame, 
+            width=10,
+            height=5,
+            background='SkyBlue1'
+            )
+        button.bind('<Button-1>', handle_click)
+        button.pack()
+
+
+
+
+window.mainloop()
+
+
+# label = Label(
+#     text='Начинаем игру!',
+#     foreground='saddle brown',
+#     background='peach puff',
+#     width=20,
+#     height=10
+#     )
+
+# label.pack()
+# window.mainloop()
+
+
+# button = Button(
+#     text='Начинаем игру!',
+#     foreground='saddle brown',
+#     background='peach puff',
+#     width=20,
+#     height=10
+#     )
+
+# button.pack()
+# window.mainloop()
+
+
+# label = Label(text='Сколько конфет вы возьмете?')
+# entry = Entry()
+# count = entry.get()
+
+# label.pack()
+# entry.pack()
+# window.mainloop()
+
+
+
+
+
+
 
 # Реализуйте RLE алгоритм: реализуйте модуль сжатия и восстановления данных.
 
