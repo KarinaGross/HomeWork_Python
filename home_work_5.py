@@ -103,83 +103,95 @@
 
 # 3. Создайте программу для игры в ""Крестики-нолики"".
 
-from tkinter import *
 
-window = Tk()
-
-# frame = Frame(master=window, width=150, height=150)
-# frame.pack(fill=BOTH)
-
-# button1 = Button(master=frame, text='1')
-# button1.pack()
-
-# button2 = Button(master=frame, text='2')
-# button2.pack()
-
-# button3 = Button(master=frame, text='3')
-# button3.pack()
-
-# button4 = Button(master=frame, text='4')
-# button4.pack()
-def handle_click(event):
-    print('X')
-
-for i in range(3):
-    window.columnconfigure(i, weight=1, minsize=50)
-    window.rowconfigure(i, weight=1, minsize=50)
-    for j in range(3):
-        frame = Frame(
-            master=window,
-            relief=RAISED,
-            borderwidth=1
-        )
-        frame.grid(row=i, column=j)
-        button = Button(
-            master=frame, 
-            width=10,
-            height=5,
-            background='SkyBlue1'
-            )
-        button.bind('<Button-1>', handle_click)
-        button.pack()
+# from tkinter import * 
+# from tkinter import messagebox
+ 
+# Player1 = 'X'
+# stop_game = False
+ 
+# def clicked(r,c):
+     
+#     global Player1
+    
+ 
+#     if Player1 == "X" and states[r][c] == 0 and stop_game == False:
+#         button[r][c].configure(text = "X")
+#         states[r][c] = 'X'
+#         Player1='O'
+ 
+     
+#     if Player1 == 'O' and states[r][c] == 0 and stop_game == False:
+#         button[r][c].configure(text = 'O')
+#         states[r][c] = "O"
+#         Player1 = "X"
+ 
+#     check_if_win()
 
 
+# def check_if_win():
+#     global stop_game
+ 
+#     for i in range(3):
+#         if states[i][0] == states[i][1] == states[i][2] !=0:
+#             stop_game = True
+    
+#             messagebox.showinfo("Winner", f"'{states[i][0]}' победили!")
+#             break
+    
+#         elif states [0][i] == states[1][i] == states[2][i] != 0:
+#             stop_game = True
+    
+#             messagebox.showinfo("Winner", f"'{states[0][i]}' победили!")
+#             break
+    
+#         elif states[0][0] == states[1][1] == states[2][2] !=0:
+#             stop_game = True
+    
+#             messagebox.showinfo("Winner", f"'{states[0][0]}' победили!")
+#             break
+    
+#         elif states[0][2] == states[1][1] == states[2][0] !=0:
+#             stop_game = True
+    
+#             messagebox.showinfo("Winner" , f"'{states[0][2]}' победили!")
+#             break
+    
+#         elif states[0][0] and states[0][1] and states[0][2] and states[1][0] and states[1][1] and states[1][2] and states[2][0] and states[2][1] and states[2][2] != 0:
+#             stop_game = True
+    
+#             messagebox.showinfo("tie", "Ничья!")
+        
 
 
-window.mainloop()
-
-
-# label = Label(
-#     text='Начинаем игру!',
-#     foreground='saddle brown',
-#     background='peach puff',
-#     width=20,
-#     height=10
-#     )
-
-# label.pack()
-# window.mainloop()
-
-
-# button = Button(
-#     text='Начинаем игру!',
-#     foreground='saddle brown',
-#     background='peach puff',
-#     width=20,
-#     height=10
-#     )
-
-# button.pack()
-# window.mainloop()
-
-
-# label = Label(text='Сколько конфет вы возьмете?')
-# entry = Entry()
-# count = entry.get()
-
-# label.pack()
-# entry.pack()
-# window.mainloop()
+# window = Tk()           
+# window.title('Крестики-нолики') 
+# window.resizable(0,0)
+ 
+# #Button
+# button = [
+#      [0,0,0],
+#      [0,0,0],
+#      [0,0,0]]
+ 
+# #text for buttons
+# states = [
+#      [0,0,0],
+#      [0,0,0],
+#      [0,0,0]]
+ 
+# for i in range(3):
+#     for j in range(3):
+                                          
+#         button[i][j] = Button(
+#                         height = 4, width = 8,
+#                         font = ("Helvetica","20"),
+#                         bg='SkyBlue1',
+#                         command = lambda r = i, c = j : clicked(r,c))
+#         button[i][j].grid(row = i, column = j)
+ 
+ 
+# mainloop()           
 
 
 
@@ -187,70 +199,59 @@ window.mainloop()
 
 
 
-# Реализуйте RLE алгоритм: реализуйте модуль сжатия и восстановления данных.
 
+# 4. Реализуйте RLE алгоритм: реализуйте модуль сжатия и восстановления данных.
 # Входные и выходные данные хранятся в отдельных текстовых файлах.
 
+from base64 import decode
 
 
+f = open('text_for_5.4.txt', encoding='UTF-8')
+file = f.read()
+f.close()
 
 
+def rle_encode(text):
+    if text.isalpha():
+        encoding = ''
+        prev_char = ''
+        count = 1
+
+        for char in text:
+            if char != prev_char:
+                if prev_char:
+                    encoding += str(count) + prev_char
+                count = 1
+                prev_char = char
+            else:
+                count += 1
+        else:
+            encoding += str(count) + prev_char
+            return encoding
+    else:
+        return 'Строка не должна содержать цифры'
+
+def rle_decode(text):
+    if not text.isalpha():
+        decoding = ''
+        count = ''
+        for char in text:
+            if char.isdigit():
+                count += char
+            else:
+                decoding += char * int(count)
+                count = ''
+        return decoding
+    
+    else:
+        return 'Строка должна содержать цифры'
 
 
+print(f'Первоначальная строка: "{file}"')
 
+encoding_data = rle_encode(file)
+print(f'Сжатая строка: "{encoding_data}"')
 
+decoding_data = rle_decode(encoding_data)
+print(f'Распакованая строка: "{decoding_data}"')
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# from tkinter import *
-
-# window = Tk()
-# label = Label(
-#     text='Начинаем игру!',
-#     foreground='saddle brown',
-#     background='peach puff',
-#     width=20,
-#     height=10
-#     )
-
-# label.pack()
-# window.mainloop()
-
-
-# button = Button(
-#     text='Начинаем игру!',
-#     foreground='saddle brown',
-#     background='peach puff',
-#     width=20,
-#     height=10
-#     )
-
-# button.pack()
-# window.mainloop()
-
-
-# label = Label(text='Сколько конфет вы возьмете?')
-# entry = Entry()
-# count = entry.get()
-
-# label.pack()
-# entry.pack()
-# window.mainloop()
