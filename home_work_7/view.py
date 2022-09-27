@@ -4,7 +4,7 @@ def view_data(data):
 def get_name():
     return input('Имя: ')
 
-def get_sername():
+def get_surname():
     return input('Фамилия: ')
 
 def get_number():
@@ -12,3 +12,6 @@ def get_number():
 
 def get_comment():
     return input('Комментарий: ')
+
+def get_record_from_phonebook():
+    return input('Введите фамилию для поиска: ')

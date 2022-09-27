@@ -1,3 +1,7 @@
 import controller
 
-controller.button_click()
+controller.add_number()
+
+print()
+
+controller.find_number()
