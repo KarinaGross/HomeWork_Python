@@ -15,3 +15,6 @@ def get_comment():
 
 def get_record_from_phonebook():
     return input('Введите фамилию для поиска: ')
+
+def get_action():
+    return input("Для сохранения нового контакта введите 'добавить'. Для поиска номера введите 'найти': \n")

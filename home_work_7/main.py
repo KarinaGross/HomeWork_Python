@@ -1,7 +1,3 @@
 import controller
 
-controller.add_number()
-
-print()
-
-controller.find_number()
+controller.save_or_search()

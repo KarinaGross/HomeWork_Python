@@ -2,6 +2,7 @@ first_name = ''
 sec_name = ''
 phone_number = ''
 comment_to_number = ''
+action = ''
 
 
 def init(name, surname, number, comment):
@@ -23,6 +24,12 @@ def init_criteria(surname):
 def connect_to_tuple(name, surname, number, comment):
     return (name, surname, number, comment)
 
-# def phone_book(n_s, n_c):
+def init_action(operation):
+    global action
+
+    action = operation
+
+
+
 
 
