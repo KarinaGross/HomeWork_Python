@@ -149,11 +149,99 @@
 
 
 
-def get_coef_polinom(polinom: str) -> list:
-    coef = ''
-    res = []
-    polinom_coef = polinom.split()
+def get_polinom(file_name: str) -> list:
+    with open(f'{file_name}') as file:
+        while True:
+            line = file.readline()
+            if not line:
+                break
+            result = line.split()
+        
+    # for i in range(len(result)):
+    #     result[i] = result[i].split('*')
+
+    # result = sum(result, [])
+    return result
     
+pol1 = get_polinom('polinom_4.5.1.txt')
+pol2 = get_polinom('polinom_4.5.2.txt')
+print(pol1)
+print(pol2)
+
+# def sum_polinom(lst_pol1: list, lst_pol2: list) -> list:
+#     lst_pol1.reverse()
+#     lst_pol2.reverse()
+#     result = []
+#     max_len = max(len(lst_pol1), len(lst_pol2))
+#     for i in range(max_len):
+#         if i == 1:
+#         result.append(int(lst_pol1[i]) + int(lst_pol2[i]))
+
+#         if 
+    
+#     result.reverse()
+#     return result
+        
+# print(sum_polinom(pol1, pol2))
+
+# def couple_elements(lst_pol1: list, lst_pol2: list) -> list:
+#     result = []
+#     for i in range(len(lst_pol1)):
+#         for j in range(len(lst_pol2)):
+#             if lst_pol1[i + 1] == lst_pol2[i + 1]:
+#                 if lst_pol1[i].isdigit() and lst_pol2.isdigit():
+#                     sum_coef = int(lst_pol1[i]) + int(lst_pol2[i])
+#                     result.append(f'{sum_coef}*{lst_pol1[i + 1]}')
+#                 else:
+
+
+# def sum_polinom(lst_pol1: list, lst_pol2: list) -> list:
+#     result = []
+#     for i in range(len(lst_pol1)):
+#         for j in range(len(lst_pol2)):
+#             if lst_pol1[i][-1] == lst_pol2[j][-1]:
+#                 if lst_pol1[i][-1].isdigit() and lst_pol2[j][-1].isdigit():
+#                     lst_pol1[i] = lst_pol1[i].split('*')
+#                     lst_pol2[j] = lst_pol2[j].split('*')
+#                     sum_coef = int(lst_pol1[i][0]) + int(lst_pol2[j][0])
+#                     result.append(f'{sum_coef}*{lst_pol1[i][1]}')
+#                     break
+#                 else:
+#                     result.append(lst_pol1[i])
+#                     break
+            
+#             elif lst_pol1[i] == lst_pol2[j] == '+':
+#                 result.append(lst_pol1[i])
+#                 break
+#     return result
+
+
+def sum_polinom(lst_pol1: list, lst_pol2: list) -> list:
+    general_list = lst_pol1 + lst_pol2
+    result = lst_pol1
+    for i in range(len(lst_pol1)):
+        for j in range(len(lst_pol2)):
+            if result[i] == lst_pol2[j]:
+                # if not general_list[i].isalnum():
+                #     del general_list[j]
+
+                if result[i].isdigit():
+                    result[i] = str(int(result[i]) + int(lst_pol2[j]))
+                    # del general_list[j]
+
+            elif result[i][-1] == lst_pol2[j][-1]:
+                if not result[i][-1].isdigit():
+                    elem_i = result[i].split('*')
+                    elem_j = lst_pol2[j].split('*')
+                    sum_coef = int(elem_i[0]) + int(elem_j[0])
+                    result[i] = f'{sum_coef}*{elem_i[1]}'
+                # del general_list[j]
+
+    return result
+
+print(sum_polinom(pol1, pol2))
+                
+            
 
 
 
