@@ -34,10 +34,10 @@ def looking_all():
     for row in records:
         print(row[2], row[1])
 
-def delete_data( first_name, second_name):
-    cur.execute("DELETE FROM users WHERE VALUE = (?, ?)", (first_name, second_name))
+def delete_data(name, surname):
+    cur.execute("DELETE FROM users WHERE (fname, lname) = (?, ?)", (name, surname))
     db.commit()
-    print(f"Контакт '{second_name}' удален")
+    print(f"Контакт '{surname} {name}' удален")
             
 
 

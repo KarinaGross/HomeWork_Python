@@ -16,9 +16,11 @@ def init(name, surname, number, comment):
     phone_number = number
     comment_to_number = comment
 
-def init_criteria(surname):
+def init_criteria(surname, name=None):
+    global first_name
     global sec_name
 
+    first_name = name
     sec_name = surname
 
 def connect_to_tuple(name, surname, number, comment):

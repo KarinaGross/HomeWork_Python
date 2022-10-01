@@ -1,4 +1,3 @@
-from urllib import request
 import model
 import view
 import db
@@ -26,10 +25,10 @@ def main():
         db.looking_all()
 
     elif action == 'удалить':
-        name = view.get_name()
-        surname = view.get_surname()
-        model.init_criteria(name, surname)
-        db.delete_data(name, surname)
+        fname = view.get_name()
+        sname = view.get_surname()
+        model.init_criteria(name=fname, surname=sname)
+        db.delete_data(fname, sname)
 
     else:
         view.view_data('Такой команды нет')
