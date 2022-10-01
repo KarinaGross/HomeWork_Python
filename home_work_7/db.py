@@ -26,7 +26,18 @@ def looking_data(second_name):
         print('ID:', row[0])
         print('Имя:', row[1])
         print('Номер', row[3])
-        print('Комментарий: :', row[4], end='\n\n')
+        print('Комментарий: ', row[4], end='\n\n')
+
+def looking_all():
+    cur.execute("SELECT * FROM users")
+    records = cur.fetchall()
+    for row in records:
+        print(row[2], row[1])
+
+def delete_data( first_name, second_name):
+    cur.execute("DELETE FROM users WHERE VALUE = (?, ?)", (first_name, second_name))
+    db.commit()
+    print(f"Контакт '{second_name}' удален")
             
 
 
